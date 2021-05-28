@@ -1,0 +1,21 @@
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <div mat-dialog-content>
+        <p>Please add new category</p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Category</mat-label>
+            <input matInput formControlName="categoryName" required>
+            <mat-error *ngIf="submitted && f.categoryName.errors && f.categoryName.errors.required">Category Name is required</mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button type="reset" (click)="onNoClick()">Cancel</button>
+        <!-- <button mat-button  [disabled]="loading"  [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
+        <button type="submit" type="submit" mat-raised-button color="primary" [disabled]="loading">
+            Save
+            <mat-icon *ngIf="loading">
+                <mat-spinner color="accent" diameter="20"></mat-spinner>
+            </mat-icon>
+        </button>
+    </div>
+</form>

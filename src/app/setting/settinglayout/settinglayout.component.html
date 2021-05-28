@@ -1,0 +1,34 @@
+<!-- <div fxLayout="column" fxFill>
+  <div fxLayout fxFlex>
+    <div fxFlex="15" fxLayoutAlign="">
+      <mat-card>
+        <mat-selection-list #setting [(ngModel)]="selectedSetting" [multiple]="false">
+          <mat-list-option *ngFor="let setting of settingList"  routerLinkActive="active" [routerLink]="setting.value" [value]="setting">
+            <mat-icon mat-list-icon>{{setting.icon}}</mat-icon>
+            <span>{{setting.display}}</span>
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-card>
+    </div>
+    <div fxFlex="85" class="p-3">
+      
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div> -->
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="{{nav.value}}" routerLinkActive="active" *ngFor="let nav of settingList">
+        <mat-icon mat-list-icon>{{nav.icon}}</mat-icon>
+        <span class="pl-3">{{nav.display}}</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

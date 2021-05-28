@@ -1,0 +1,47 @@
+<div class="container mt-5">
+    <div class="text-center">
+        <img src="assets/img/codelogo.png" style="height:100px" />
+    </div>
+    <div class="card w-50 center mt-3">
+        <mat-card>
+            <mat-card-title class="text-center">Login</mat-card-title>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <mat-card-content>
+                    <div class="form-group">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="pat@example.com" formControlName="email" required>
+                            <mat-error *ngIf="submitted && f.email.errors">Email is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Enter your password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="submitted && f.password.errors && f.password.errors.required">Password is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-checkbox formControllerName="rememberme" color="primary">
+                            Remember Me?
+                        </mat-checkbox>
+                    </div>
+                    <a routerLink="/register">New User?</a>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button type="submit" mat-raised-button color="primary" [disabled]="loading">
+                        Login
+                        <mat-icon *ngIf="loading">
+                            <mat-spinner color="accent" diameter="20"></mat-spinner>
+                        </mat-icon>
+                    </button>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+    </div>
+</div>

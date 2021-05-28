@@ -1,0 +1,79 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <div mat-dialog-content>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Product</mat-label>
+                        <input matInput formControlName="productName" required>
+                        <mat-error *ngIf="submitted && f.productName.errors && f.productName.errors.required">
+                            Product Name is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Select Category</mat-label>
+                        <mat-select formControlName="categoryId" required>
+                            <mat-option value="">--</mat-option>
+                            <mat-option *ngFor="let category of categories" [value]="category.id">
+                                {{category.categoryName}}
+                            </mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="category.hasError('required')">Please choose an animal</mat-error> -->
+                        <!-- <mat-hint>{{category.value?.sound}}</mat-hint> -->
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Price</mat-label>
+                        <input matInput type="number" placeholder="Ex. 12$" formControlName="price" min="10">
+                        <span matSuffix>$</span>
+                        <mat-error *ngIf="submitted && f.price.errors && f.price.errors.required">
+                            Price is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Weight</mat-label>
+                        <input matInput type="number" placeholder="Ex. 12gm" formControlName="weight" min="10">
+                        <span matSuffix>gm</span>
+                        <mat-error *ngIf="submitted && f.weight.errors && f.weight.errors.required">
+                            Weight is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <mat-form-field  appearance="legacy" class="example-full-width">
+                        <mat-label>Description</mat-label>
+                        <input matInput #message maxlength="256" formControlName="description" placeholder="Ex. I need help with...">
+                        <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+                        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                      </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button type="reset" (click)="onNoClick()">Cancel</button>
+        <!-- <button mat-button  [disabled]="loading"  [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
+        <button type="submit" type="submit" mat-raised-button color="primary" [disabled]="loading">
+            Save
+            <mat-icon *ngIf="loading">
+                <mat-spinner color="accent" diameter="20"></mat-spinner>
+            </mat-icon>
+        </button>
+    </div>
+</form>

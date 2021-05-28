@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcDemo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark">Privacy</a>
+            </li>
+        </ul>
+
+        <div class="dropdown pmd-dropdown pmd-user-info ml-auto">
+            <a href="#" class="btn-user dropdown-toggle media align-items-center" data-toggle="dropdown" data-sidebar="true"
+                aria-expanded="false">
+                <img class="mr-2" src="https://pro.propeller.in/assets/images/avatar-icon-40x40.png" width="40"
+                    height="40" alt="avatar">
+                <div class="media-body" [innerHTML]="username">
+                </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                <li>
+                    <a class="dropdown-item">Edit Profile</a>
+                </li>
+                <li>
+                    <a class="dropdown-item">Your Account</a>
+                </li>
+                <li>
+                    <form method="post">
+                        <button type="submit" class="dropdown-item">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>

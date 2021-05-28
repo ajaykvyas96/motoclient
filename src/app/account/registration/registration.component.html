@@ -1,0 +1,174 @@
+<div class="container mt-5">
+
+    <div class="text-center">
+        <img src="assets/img/codelogo.png" style="height:100px" />
+    </div>
+
+    <div class="card w-50 center mt-3">
+        <mat-card>
+            <mat-card-title class="text-center">Login</mat-card-title>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="pat@example.com" formControlName="firstName" required>
+                                    <mat-error *ngIf="submitted && f.firstName.errors">Firstname is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput placeholder="pat@example.com" formControlName="lastName" required>
+                                    <mat-error *ngIf="submitted && f.lastName.errors">Lastname is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Phone</mat-label>
+                            <input matInput placeholder="" formControlName="phoneNumber" required>
+                            <mat-error *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.required">
+                                Phone number is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="pat@example.com" formControlName="email" required>
+                            <mat-error *ngIf="submitted && f.email.errors && f.email.errors.required">Email is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Enter your password</mat-label>
+                                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
+                                        required>
+                                    <button mat-icon-button matSuffix (click)="hide = !hide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                    <mat-error *ngIf="submitted && f.password.errors && f.password.errors.required">
+                                        Password is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="legacy">
+                                    <mat-label>Confirm Password</mat-label>
+                                    <input matInput [type]="cphide ? 'password' : 'text'"
+                                        formControlName="confirmPassword" required>
+                                    <button mat-icon-button matSuffix (click)="cphide = !cphide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="cphide">
+                                        <mat-icon>{{cphide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                    <mat-error
+                                        *ngIf="submitted && f.confirmPassword.errors && f.confirmPassword.errors.required">
+                                        Confirm Password is required
+                                    </mat-error>
+                                    <mat-error
+                                        *ngIf="submitted && f.confirmPassword.errors && f.confirmPassword.errors.confirmedValidator">
+                                        Password and Confirm Password must be match.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/login">Already have an Account?</a>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-raised-button color="primary" [disabled]="loading">
+                        Register
+                        <mat-icon *ngIf="loading">
+                            <mat-spinner color="accent" diameter="20"></mat-spinner>
+                        </mat-icon>
+                    </button>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+    </div>
+
+
+
+
+
+
+    <div class="card w-50 center mt-3" *ngIf="false">
+        <div class="card-body">
+            <h5 class="card-title text-center">Log In</h5>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" formControlName="firstName" class="form-control" />
+                            <div *ngIf="submitted && f.firstName.errors" class="text-danger">
+                                <div *ngIf="f.firstName.errors.required">Firstname is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" formControlName="lastName" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" formControlName="phoneNumber" class="form-control" />
+                    <div *ngIf="submitted && f.phoneNumber.errors" class="text-danger">
+                        <div *ngIf="f.phoneNumber.errors.required">Phone number is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" formControlName="email" class="form-control" />
+                    <div *ngIf="submitted && f.email.errors" class="text-danger">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" formControlName="password" class="form-control" />
+                            <div *ngIf="submitted && f.password.errors" class="text-danger">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" formControlName="confirmPassword" class="form-control" />
+                            <div *ngIf="submitted && f.confirmPassword.errors" class="text-danger">
+                                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.confirmPassword.errors.confirmedValidator">Password and Confirm Password
+                                    must be match.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a routerLink="/login">Already have an Account?</a>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Register
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
