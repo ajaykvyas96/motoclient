@@ -13,3 +13,20 @@ export class User {
     //     this.token = user.token;
     // }
 }
+
+export class AccountInfo {
+    accessFailedCount: number;
+    email: string;
+    emailConfirmed: boolean;
+    firstName: string;
+    gender: string;
+    lastName: string;
+    lockoutEnabled: boolean;
+    lockoutEnd: number;
+    normalizedEmail: string;
+    normalizedUserName: string;
+    phoneNumber: string;
+    phoneNumberConfirmed: false
+    profileImage: string;
+    userName: string;
+}

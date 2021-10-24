@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { User } from '../models/user';
+import { AccountInfo, User } from '../models/user';
 import { LoginViewModel } from '../models/LoginViewModel';
 import { RegisterViewModel } from '../models/RegisterViewModel';
 import { SnackbarService } from './snackbar.service';
@@ -15,6 +15,7 @@ export class AccountService {
     private userSubject: BehaviorSubject<User>;
     public user: Observable<User>;
     private apiUrl: string= `${environment.apiUrl}/auth`;
+    private accountApi: string = `${environment.apiUrl}/account`;
 
     constructor(
         private router: Router,
@@ -56,8 +57,8 @@ export class AccountService {
         return this.http.get<User[]>(`${this.apiUrl}/users`);
     }
 
-    getById(id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+    get() : Observable<AccountInfo>{
+        return this.http.get<AccountInfo>(`${this.accountApi}`);
     }
 
     update(id: string, params: any) {
@@ -86,4 +87,10 @@ export class AccountService {
     //             return x;
     //         }));
     // }
+
+    uploadProfile(formData: FormData) {
+        
+        return this.http.post(`${this.accountApi}/uploadprofile`,formData);
+
+    }
 }
